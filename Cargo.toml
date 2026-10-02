@@ -1,0 +1,47 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/lampyris-core",
+    "crates/lampyris-ingest",
+    "crates/lampyris-storage",
+    "crates/lampyris",
+    "crates/lampyris-ui",
+]
+# The Qt/KDE UI needs Qt 6 and KDE Frameworks 6 installed, so it is left out of
+# plain `cargo build` / `cargo test`. Build it explicitly with `-p lampyris-ui`.
+default-members = [
+    "crates/lampyris-core",
+    "crates/lampyris-ingest",
+    "crates/lampyris-storage",
+    "crates/lampyris",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/bogd3v/lampyris"
+homepage = "https://github.com/bogd3v/lampyris"
+authors = ["Lampyris contributors"]
+
+[workspace.dependencies]
+lampyris-core = { path = "crates/lampyris-core" }
+lampyris-ingest = { path = "crates/lampyris-ingest" }
+lampyris-storage = { path = "crates/lampyris-storage" }
+
+anyhow = "1"
+thiserror = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "sync", "time", "signal", "fs", "io-util"] }
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+debug = "line-tables-only"
+
+[profile.bench]
+debug = true

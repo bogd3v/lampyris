@@ -1,0 +1,28 @@
+[package]
+name = "lampyris-ui"
+description = "Lampyris desktop app: Qt Quick + KDE Kirigami interface."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[[bin]]
+name = "lampyris-ui"
+path = "src/main.rs"
+
+[dependencies]
+lampyris = { path = "../lampyris" }
+lampyris-core = { workspace = true }
+lampyris-ingest = { workspace = true }
+cxx = "1"
+serde_json = { workspace = true }
+chrono = { version = "0.4", default-features = false, features = ["std", "alloc"] }
+cxx-qt = "0.10"
+cxx-qt-lib = { version = "0.10", features = ["qt_gui", "qt_qml"] }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+[build-dependencies]
+cxx-qt-build = "0.10"

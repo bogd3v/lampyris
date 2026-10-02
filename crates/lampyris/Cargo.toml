@@ -1,0 +1,31 @@
+[package]
+name = "lampyris"
+description = "Lampyris: local-first detector of coordinated bot campaigns on social networks."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+
+[lib]
+name = "lampyris"
+path = "src/lib.rs"
+
+[[bin]]
+name = "lampyris"
+path = "src/main.rs"
+
+[dependencies]
+lampyris-core = { workspace = true }
+lampyris-ingest = { workspace = true }
+lampyris-storage = { workspace = true }
+anyhow = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+clap = { version = "4", features = ["derive", "env"] }
+chrono = { version = "0.4", default-features = false, features = ["std", "alloc", "clock"] }
+dirs = "6"
